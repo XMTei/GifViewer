@@ -1,2 +1,114 @@
-﻿body {
+﻿/*
+	all the style sheet for gif viewer base on w3.css
+	//2017/12/9 by TEI
+
+*/
+
+/*for open control pannel button */
+.OpenControlPanelBtn {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 2;
+	background-color: rgba(0,130,123,0.8) !important; /*override w3-*  */
 }
+
+/* for control pannel*/
+.ControlPanel {
+	width: 295px;
+	z-index: 3;
+	background-color: rgba(220,220,220,0.8) !important; /*override w3-*  */
+}
+
+/*changed w3-container*/
+.w3-container {
+	padding: 0.01em 4px; /*original one was 16px*/
+}
+
+/*for OnProcessing animation */
+.OnProcessing {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	display: none;
+}
+
+/*所要显示的Slide Image的Style*/
+.SlideImage {
+	width: 100%;
+	/*以下是背景图片的格式*/
+	background-size: contain; /*显示全部背景*/
+	background-repeat: no-repeat; /**/
+	background-position: center center; /*背景放在中间*/
+	/*以下是缩放用的*/
+	-ms-transform-origin: center top; /*以顶部中心为中心缩放？？*/
+	-ms-transform: scale(1.0); /*缩放用*/
+	-webkit-transform-origin: center top;
+	-webkit-transform: scale(1.0);
+	-moz-transform-origin: center center;
+	-moz-transform: scale(1.0);
+	-o-transform-origin: center top;
+	-o-transform: scale(1.0);
+	transform-origin: center top;
+	transform: scale(1.0);
+}
+
+/*for switch, see https://www.w3schools.com/howto/howto_css_switch.asp */
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+}
+
+	.switch input {
+		display: none;
+	}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 22px;
+	width: 24px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+input:checked + .slider {
+	background-color: #2196F3;
+}
+
+input:focus + .slider {
+	box-shadow: 0 0 1px rgba(220,220,220,0.8);
+}
+
+input:checked + .slider:before {
+	-webkit-transform: translateX(28px);
+	-ms-transform: translateX(28px);
+	transform: translateX(28px);
+}
+
+/* Rounded sliders */
+.slider.round {
+	border-radius: 34px;
+}
+
+	.slider.round:before {
+		border-radius: 50%;
+	}
