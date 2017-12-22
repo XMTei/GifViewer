@@ -21,4 +21,4 @@ A single page Web application that show Gif animation images one by one.
 - This program work for multi languages, and currently has English, Chinese, Japanese UI. If you want to display other langguage, the only you need to do is translating a set of strings(a JSON file)
 - You can upload your own GIF file to server, and show it to all 
 
-![Screenshot](GifViewer/Images/GifViewer.gif)
+![Screenshot](/GifViewer/wwwroot/images/GifViewer.gif)
