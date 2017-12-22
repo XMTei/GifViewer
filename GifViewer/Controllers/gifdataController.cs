@@ -317,6 +317,7 @@ namespace GifViewer.Controllers
 							//				.Parse(file.ContentDisposition)
 							//				.FileName
 							//				.Trim('"');
+							oUnuploadedFiles.AddLast(oFile.Name);//assume will not be uploaded
 							string strExt = Path.GetExtension(oFile.Name);
 							if (!string.IsNullOrEmpty(strExt))
 							{
@@ -331,13 +332,23 @@ namespace GifViewer.Controllers
 											oFile.CopyTo(fs);
 											fs.Flush();
 										}
+										//remove from unuploaded file list
+										oUnuploadedFiles.RemoveLast();
 									}
-									else
-									{//alread has this file
-										oUnuploadedFiles.AddLast(oFile.Name);
-									}
+									//else
+									//{//alread has this file
+									//	oUnuploadedFiles.AddLast(oFile.Name);
+									//}
 								}
+								//else
+								//{// not gif file
+								//	oUnuploadedFiles.AddLast(oFile.Name);
+								//}
 							}
+							//else
+							//{//not gif file
+							//	oUnuploadedFiles.AddLast(oFile.Name);
+							//}
 						}
 						string strMessage = string.Empty;
 						foreach (string strTemp in oUnuploadedFiles)
