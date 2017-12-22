@@ -38,4 +38,11 @@ Thumbs.db
 
 # dotCover
 *.dotCover
+.vs
+bin
+obj
+packages
+*.lock.json
+*.user
+*.nupkg
 /GifViewer/Properties/PublishProfiles
