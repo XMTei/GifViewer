@@ -5,8 +5,13 @@ A single page Web application that show Gif animation images one by one.
 - Windows 10
 - Visual Studio 2017
 - ASP.Net core 1.1
-- W3.css for responsiveness
+- [W3.css](https://www.w3schools.com/w3css/default.asp) for responsiveness
+- Use [CoreCompact](https://github.com/CoreCompat/CoreCompat) for imaging.
 - C#,Javascript
+
+## Setup a Web Server
+- Currentle I use Azure App Service windows server to test this project.
+- I believe Linux + ASP.NET core can be used, but need make a testing. 
 
 ## Use of browsers
 - IE,Edge,Chrome,FireFox on Windows.
@@ -22,3 +27,8 @@ A single page Web application that show Gif animation images one by one.
 - You can upload your own GIF file to server, and show it to all 
 
 ![Screenshot](/GifViewer/wwwroot/images/GifViewer.gif)
+
+## Notice
+If use this program on MacOS or Linux, make sure you reference the native packages of CoreCompact:
+* [Linux: `runtime.linux-x64.CoreCompat.System.Drawing`](https://www.nuget.org/packages/runtime.linux-x64.CoreCompat.System.Drawing)
+* [OS X: `runtime.osx.10.10-x64.CoreCompat.System.Drawing`](https://www.nuget.org/packages/runtime.osx.10.10-x64.CoreCompat.System.Drawing)
