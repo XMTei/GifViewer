@@ -27,7 +27,8 @@ A single page Web application that show Gif animation images one by one.
 - You can upload your own GIF file to server, and show it to all 
 
 ## Screen shoots
-![Screenshot](/GifViewer/wwwroot/images/GifViewer.gif) ![ScreenshotiPhone](/GifViewer/wwwroot/images/GifVieweriPhone.gif)
+![Screenshot](/GifViewer/wwwroot/images/GifViewer.gif)
+![ScreenshotiPhone](/GifViewer/wwwroot/images/GifVieweriPhone.gif)
 
 ## Notice
 If use this program on MacOS or Linux, make sure you reference the native packages of CoreCompact:
