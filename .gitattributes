@@ -61,3 +61,8 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+GifViewer/wwwroot/lib/fontawesome/* linguist-vendored
+GifViewer/wwwroot/lib/jQuery/* linguist-vendored
+GifViewer/wwwroot/lib/w3/* linguist-vendored
+
