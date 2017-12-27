@@ -28,6 +28,8 @@ namespace GifViewer.Controllers
 	//			1.support web commands GET,POST,PUT,DELETE, but PUT and DELETE are not uead frequncly.
 	//
 	[Route("api/[controller]")]
+	//[Produces("application/json")]
+	//[Consumes("application/json","application/json-patch+json","multipart/form-data")]
     public class gifdataController : Controller
     {
 		#region Vars
