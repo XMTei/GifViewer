@@ -3,14 +3,14 @@ A single page Web application that show Gif animation images one by one.
 
 ## Development Environment
 - Windows 10 + Visual Studio 2017 community
-- Or MacOS + Visual Studio 2017 community for Mac (If it suport Bower then it will be verry will )
+- Or MacOS + Visual Studio 2017 community for Mac (If it support Bower then it will be very will )
 - [ASP.Net core 1.1.2 for Windows](https://www.microsoft.com/net/download/windows),or [ASP.Net core 1.1.2 for Mac](https://www.microsoft.com/net/download/macos)
 - [W3.css](https://www.w3schools.com/w3css/default.asp) for responsiveness
 - Use [CoreCompact](https://github.com/CoreCompat/CoreCompat) for imaging.
 - C#,Javascript
 
 ## Setup a Web Server
-- Currentle I use Azure App Service windows server to test this project.
+- Language I use Azure App Service windows server to test this project.
 - I believe Linux + ASP.NET core can be used, but need make a testing. 
 
 ## Use of browsers
