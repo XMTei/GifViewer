@@ -200,13 +200,14 @@ function UploadFiles(e) {
 		//crossDomain: true,
 		url: uri + "/Upload",//gifdataController.Upload() will be called
 		method: "POST",
-		//"headers": {
-		//	"content-type": "application/json",//tell server that it will get json data
-		//	"cache-control": "no-cache"
-		//},
-		contentType: false,
+		headers: {//Use header to set the content type
+			'content-type': "multipart/form-data"//tell server that it will get form data
+			//"cache-control": "no-cache"
+		},
+		//contentType: false,//use headers.content-type to set the content type
 		processData: false,
-		cache:false,
+		cache: false,
+		dataType: 'json',
 		data: data,
 		xhr: function () {
 			var oUploadProgress = $("#UploadProgress");
