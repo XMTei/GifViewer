@@ -10,8 +10,8 @@ A single page Web application that show Gif animation images one by one.
 - C#,Javascript
 
 ## Setup a Web Server
-- Language I use Azure App Service windows server to test this project.
-- I believe Linux + ASP.NET core can be used, but need make a testing. 
+- Azure App Service windows server is used to test this project.
+- I believe Linux + ASP.NET core can be used, but need to test. 
 
 ## Use of browsers
 - IE,Edge,Chrome,FireFox on Windows.
@@ -21,10 +21,10 @@ A single page Web application that show Gif animation images one by one.
 
 ## Features
 - Show GIF animation one by one on Web browser.
-- Set interval time.
-- Turn on/off showing animation. If it set to off, show a frame of the GIF image..
-- This program work for multi languages, and currently has English, Chinese, Japanese UI. If you want to display other langguage, the only you need to do is translating a set of strings(a JSON file)
-- You can upload your own GIF file to server, and show it to all 
+- Set interval time to show next GIF image.
+- Turn on/off for showing animation. If it set to off, show a frame of the GIF image.
+- This program work for multi languages, and currently has English, Chinese, Japanese UI. If you want to display with other langguages, the only thing you need to do is translating a set of strings(part of JSON file).
+- You can upload your own GIF file to server, and show it to all. 
 
 ## Screen shoots
 ![Screenshot](/GifViewer/wwwroot/images/GifViewer.gif)
