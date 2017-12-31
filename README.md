@@ -10,7 +10,7 @@ A single page Web application that show Gif animation images one by one.
 - C#,Javascript
 
 ## Setup a Web Server
-- Azure App Service windows server is used to test this project.
+- Azure App Service windows server is used to test this project.[here](http://gifviewer.azurewebsites.net/) is the web page.
 - I believe Linux + ASP.NET core can be used, but need to test. 
 
 ## Use of browsers
