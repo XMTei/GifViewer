@@ -4,7 +4,7 @@ A single page Web application that show Gif animation images one by one.
 ## Development Environment
 - Windows 10 + Visual Studio 2017 community
 - Or MacOS + Visual Studio 2017 community for Mac (If it support Bower then it will be very will )
-- ASP.Net Core 2.0. for ASP.Net Core 1.X version ([ASP.Net core 1.1.2 for Windows](https://www.microsoft.com/net/download/windows),or [ASP.Net core 1.1.2 for Mac](https://www.microsoft.com/net/download/macos)) check [here](<PackageReference Include="Newtonsoft.Json" Version="10.0.3" />)
+- ASP.Net Core 2.0. For ASP.Net Core 1.X version ([ASP.Net core 1.1.2 for Windows](https://www.microsoft.com/net/download/windows),or [ASP.Net core 1.1.2 for Mac](https://www.microsoft.com/net/download/macos)) check [here](https://github.com/XMTei/GifViewer/tree/495646ab69d3a66a2229fb040491c10146afb0f7)
 - [W3.css](https://www.w3schools.com/w3css/default.asp) for responsiveness
 - Use [CoreCompact](https://github.com/CoreCompat/CoreCompat) for imaging.
 - C#,Javascript
