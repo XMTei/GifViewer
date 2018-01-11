@@ -78,7 +78,7 @@ namespace GifViewer.Controllers
 		//Modify:
 		//Return:  	async Task<ActionResult>
 		//Description: get UI strings for specified UI language
-		//			1.follow this styeps in Client to call this WEB API
+		//			1.follow those styeps in Client to call this WEB API
 		//				var settings = {
 		//					"async": false,
 		//					"crossDomain": true,
@@ -153,7 +153,7 @@ namespace GifViewer.Controllers
 		//Modify:
 		//Return:  	async Task<ActionResult>
 		//Description: get next gif/tiff data
-		//			1.follow this styeps in Client to call this WEB API
+		//			1.follow those steps in Client to call this WEB API
 		//				var settings = {
 		//					"async": true,
 		//					"crossDomain": true,
@@ -277,7 +277,7 @@ namespace GifViewer.Controllers
 		//Modify:
 		//Return:  	async Task<ActionResult>
 		//Description: get next gif/tiff data
-		//			1.follow this styeps in Client to call this WEB API
+		//			1.follow those steps in Client to call this WEB API
 		//				var settings = {
 		//					"async": true,
 		//					"crossDomain": true,
