@@ -82,7 +82,14 @@ function GetUIStrings() {
 					}
 				}
 				else {
-					ShowErrorMessage('Data Error!', 'Unsupported data type:' + data.type);
+                    var strMessage = ‘’;
+                    if(data.type) {
+                        strMessage += ‘,DataType:’ + data.type;
+                        if(data.type.indexOf('Text')>=0){
+                            strMessage += ',Message:' + data.data;
+                        }
+                    }
+					ShowErrorMessage('Data Error!', strMessage);
 				}
 			}
 		},

@@ -138,7 +138,13 @@ namespace GifViewer.Controllers
 					}
 					catch (Exception e)
 					{//一般是没有找到ColorGroups.json文件等问题
-
+                        ResponseParam oResponseParam = new ResponseParam
+                        {//return all the strings for UI
+                            Type = DataType.Text,
+                            Data = e.Message,
+                            CallFiFoGUID = -1
+                        };
+                        oJson = Json(oResponseParam);
 					}
 					return oJson;
 				});
