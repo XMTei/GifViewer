@@ -82,14 +82,14 @@ function GetUIStrings() {
 					}
 				}
 				else {
-                    var strMessage = ‘’;
+                    var strMessage = 'Can not translate UI.';
                     if(data.type) {
-                        strMessage += ‘,DataType:’ + data.type;
+                        strMessage += ',DataType:' + data.type;
                         if(data.type.indexOf('Text')>=0){
                             strMessage += ',Message:' + data.data;
-                        }
+						}
                     }
-					ShowErrorMessage('Data Error!', strMessage);
+					alert(strMessage);//show a message that means could not get uistrings
 				}
 			}
 		},
