@@ -134,6 +134,7 @@ function ShowNextData() {
 				if (data.callFiFoGUID >= 0) {
 					var nStackNo = resetImageFiFo.indexOf(data.callFiFoGUID);
 				}
+				var bGetGifFile = false;
 				if ((data.type) && (nStackNo >= 0)) {
 					resetImageFiFo.splice(0, nStackNo + 1);//clear the call ID before this ID.
 					if (resetImageFiFo.length <= 0) {
@@ -155,8 +156,20 @@ function ShowNextData() {
 							strCurrentFileName = oJsonObj.FileName;
 							nCurrentFileNo = oJsonObj.Index;
 							nTotalFiles = oJsonObj.Total;
+							bGetGifFile = true;//we got all a Gif file
 						}
 					}
+				}
+				if (!bGetGifFile) {
+					var strMessage = 'Can not get the GIF file';
+					if (data.type) {
+						strMessage += ',DataType:' + data.type;
+						if (data.type.indexOf('Text') >= 0) {//can get a message from server
+							strMessage += ',Message:' + data.data;
+						}
+					}
+					ShowErrorMessage('Caution:', strMessage);
+					//alert(strMessage);//show a message that means could not get uistrings
 				}
 			}
 			//set progress bar
