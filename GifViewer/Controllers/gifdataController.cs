@@ -189,7 +189,6 @@ namespace GifViewer.Controllers
 			{//got right param from client
 				oRcd = await Task.Run(() =>
 				{//use async to make return data
-					string strMessage = string.Empty;
 					ActionResult oJson = new EmptyResult();
                     string strImgDir = System.IO.Path.Combine(this.m_oEnveroment.WebRootPath, @"App_data/ImageData");
 					try
@@ -248,52 +247,28 @@ namespace GifViewer.Controllers
 										}
 									}
 								}
-								if (oData != null)
+								string strData = Convert.ToBase64String(oData);
+								DataInfo oDataInfo = new DataInfo
 								{
-									string strData = Convert.ToBase64String(oData);
-									DataInfo oDataInfo = new DataInfo
-									{
-										Type = eType,
-										Data = strData,
-										Total = oFileInfos.Length,
-										Index = nNext + 1,
-										FileName = oFileInfos[nNext].Name
-									};
-									ResponseParam oResponseParam = new ResponseParam
-									{//return all the strings for UI
-										Type = DataType.Json,
-										Data = JsonConvert.SerializeObject(oDataInfo),
-										CallFiFoGUID = value.CallFiFoGUID,
-									};
-									oJson = Json(oResponseParam);
-								}
-								else
-								{
-									strMessage = $"Could not get frame data";
-								}
+									Type = eType,
+									Data = strData,
+									Total = oFileInfos.Length,
+									Index = nNext+1,
+									FileName = oFileInfos[nNext].Name
+								};
+								ResponseParam oResponseParam = new ResponseParam
+								{//return all the strings for UI
+									Type = DataType.Json,
+									Data = JsonConvert.SerializeObject(oDataInfo),
+									CallFiFoGUID = value.CallFiFoGUID,
+								};
+								oJson = Json(oResponseParam);
 							}
-							else
-							{
-								strMessage = $"None Gif file found";
-							}
-						}
-						else
-						{
 						}
 					}
 					catch (Exception e)
 					{//file operation error...
-						strMessage = e.Message;
-					}
-					if (!string.IsNullOrEmpty(strMessage))
-					{//find error
-						ResponseParam oResponseParam = new ResponseParam
-						{//return all the strings for UI
-							Type = DataType.Text,//it is a error message
-							Data = strMessage,
-							CallFiFoGUID = value.CallFiFoGUID,
-						};
-						oJson = Json(oResponseParam);
+
 					}
 					return oJson;
 				});
@@ -340,6 +315,9 @@ namespace GifViewer.Controllers
 				{
 					if (Directory.Exists(strImgDir))
 					{
+                        string strMessage = string.Empty;
+
+                        strMessage = $"here 1 {strImgDir} exists. ";//foe debug
 						LinkedList<string> oUnuploadedFiles = new LinkedList<string>();//record unuploaded file(s)
 						var oFiles = Request.Form.Files;
 						//long nTotalBytes = oFiles.Sum(f => f.Length);//total data bytes to be uploaded
@@ -354,14 +332,18 @@ namespace GifViewer.Controllers
 							string strExt = Path.GetExtension(oFile.Name);
 							if (!string.IsNullOrEmpty(strExt))
 							{
+                                strMessage += $"here 2 {oFile.Name} has extension ({strExt}). ";
 								if (strExt.Equals(".gif", StringComparison.OrdinalIgnoreCase))
 								{
+                                    strMessage += $"here 3 {oFile.Name} is gif file. ";
 									string strFilename = strImgDir + $@"\{oFile.Name}";
 									if (!System.IO.File.Exists(strFilename))
 									{//start upload
+                                        strMessage += $"here 4 {strFilename} does not exists. ";
 										//nSize += oFile.Length;
 										using (FileStream fs = System.IO.File.Create(strFilename))
 										{
+                                            strMessage += $"here 5 save uploaded gif data to {strFilename}. ";
 											oFile.CopyTo(fs);
 											fs.Flush();
 										}
@@ -383,7 +365,6 @@ namespace GifViewer.Controllers
 							//	oUnuploadedFiles.AddLast(oFile.Name);
 							//}
 						}
-						string strMessage = string.Empty;
 						foreach (string strTemp in oUnuploadedFiles)
 						{
 							strMessage += strTemp + ",";
