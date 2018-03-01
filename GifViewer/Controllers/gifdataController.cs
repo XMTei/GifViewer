@@ -189,6 +189,7 @@ namespace GifViewer.Controllers
 			{//got right param from client
 				oRcd = await Task.Run(() =>
 				{//use async to make return data
+					string strMessage = string.Empty;
 					ActionResult oJson = new EmptyResult();
                     string strImgDir = System.IO.Path.Combine(this.m_oEnveroment.WebRootPath, @"App_data/ImageData");
 					try
@@ -247,28 +248,52 @@ namespace GifViewer.Controllers
 										}
 									}
 								}
-								string strData = Convert.ToBase64String(oData);
-								DataInfo oDataInfo = new DataInfo
+								if (oData != null)
 								{
-									Type = eType,
-									Data = strData,
-									Total = oFileInfos.Length,
-									Index = nNext+1,
-									FileName = oFileInfos[nNext].Name
-								};
-								ResponseParam oResponseParam = new ResponseParam
-								{//return all the strings for UI
-									Type = DataType.Json,
-									Data = JsonConvert.SerializeObject(oDataInfo),
-									CallFiFoGUID = value.CallFiFoGUID,
-								};
-								oJson = Json(oResponseParam);
+									string strData = Convert.ToBase64String(oData);
+									DataInfo oDataInfo = new DataInfo
+									{
+										Type = eType,
+										Data = strData,
+										Total = oFileInfos.Length,
+										Index = nNext + 1,
+										FileName = oFileInfos[nNext].Name
+									};
+									ResponseParam oResponseParam = new ResponseParam
+									{//return all the strings for UI
+										Type = DataType.Json,
+										Data = JsonConvert.SerializeObject(oDataInfo),
+										CallFiFoGUID = value.CallFiFoGUID,
+									};
+									oJson = Json(oResponseParam);
+								}
+								else
+								{
+									strMessage = $"Could not get frame data";
+								}
 							}
+							else
+							{
+								strMessage = $"None Gif file found";
+							}
+						}
+						else
+						{
 						}
 					}
 					catch (Exception e)
 					{//file operation error...
-
+						strMessage = e.Message;
+					}
+					if (!string.IsNullOrEmpty(strMessage))
+					{//find error
+						ResponseParam oResponseParam = new ResponseParam
+						{//return all the strings for UI
+							Type = DataType.Text,//it is a error message
+							Data = strMessage,
+							CallFiFoGUID = value.CallFiFoGUID,
+						};
+						oJson = Json(oResponseParam);
 					}
 					return oJson;
 				});
