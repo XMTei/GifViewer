@@ -328,8 +328,9 @@ namespace GifViewer.Controllers
 		//				};
 		//				$.ajax(settings);
 		//
+		//[RequestSizeLimit(2147483648)]
 		[HttpPost("Upload")]
-		public async Task<ActionResult> Upload(ICollection<IFormFile> value)//want to get the data form ajax, but does not work
+		public async Task<ActionResult> Upload()//want to get the data form ajax, but does not work
 		{
 			ActionResult oRcd = await Task.Run(() =>
 			{//use async to make return data
@@ -342,7 +343,7 @@ namespace GifViewer.Controllers
 					{
                         string strMessage = string.Empty;
 
-                        strMessage = $"here 1 {strImgDir} exists. ";//foe debug
+                        //strMessage = $"here 1 {strImgDir} exists. ";//foe debug
 						LinkedList<string> oUnuploadedFiles = new LinkedList<string>();//record unuploaded file(s)
 						var oFiles = Request.Form.Files;
 						//long nTotalBytes = oFiles.Sum(f => f.Length);//total data bytes to be uploaded
@@ -357,18 +358,18 @@ namespace GifViewer.Controllers
 							string strExt = Path.GetExtension(oFile.Name);
 							if (!string.IsNullOrEmpty(strExt))
 							{
-                                strMessage += $"here 2 {oFile.Name} has extension ({strExt}). ";
+                                //strMessage += $"here 2 {oFile.Name} has extension ({strExt}). ";
 								if (strExt.Equals(".gif", StringComparison.OrdinalIgnoreCase))
 								{
-                                    strMessage += $"here 3 {oFile.Name} is gif file. ";
+                                    //strMessage += $"here 3 {oFile.Name} is gif file. ";
 									string strFilename = strImgDir + $@"\{oFile.Name}";
 									if (!System.IO.File.Exists(strFilename))
 									{//start upload
-                                        strMessage += $"here 4 {strFilename} does not exists. ";
+                                        //strMessage += $"here 4 {strFilename} does not exists. ";
 										//nSize += oFile.Length;
 										using (FileStream fs = System.IO.File.Create(strFilename))
 										{
-                                            strMessage += $"here 5 save uploaded gif data to {strFilename}. ";
+                                            //strMessage += $"here 5 save uploaded gif data to {strFilename}. ";
 											oFile.CopyTo(fs);
 											fs.Flush();
 										}
