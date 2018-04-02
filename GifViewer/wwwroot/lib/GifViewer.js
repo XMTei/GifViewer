@@ -222,6 +222,7 @@ function UploadFiles(e) {
 		method: "POST",
 		headers: {//Use header to set the content type
 			'content-type': "multipart/form-data"//tell server that it will get form data
+			//'content-type': " undefined"//
 			//"cache-control": "no-cache"
 		},
 		//contentType: false,//use headers.content-type to set the content type

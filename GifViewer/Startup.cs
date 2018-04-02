@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 
 namespace GifViewer
@@ -30,7 +33,16 @@ namespace GifViewer
 		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
         {
+			services.AddSingleton<IFileProvider>(
+				new PhysicalFileProvider(
+					Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
+			
 			services.AddMvc();
+			services.Configure<FormOptions>(x =>
+			{
+				x.ValueLengthLimit = int.MaxValue;
+				x.MultipartBodyLengthLimit = int.MaxValue; // In case of multipart
+			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
