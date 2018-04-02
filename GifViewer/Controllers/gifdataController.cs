@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;//for get server path
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -329,7 +330,7 @@ namespace GifViewer.Controllers
 		//				$.ajax(settings);
 		//
 		[HttpPost("Upload")]
-		public async Task<ActionResult> Upload(ICollection<IFormFile> value)//want to get the data form ajax, but does not work
+		public async Task<ActionResult> Upload()//want to get the data form ajax, but does not work
 		{
 			ActionResult oRcd = await Task.Run(() =>
 			{//use async to make return data
