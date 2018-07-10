@@ -21,7 +21,7 @@ $.guid = 0;//an unique ID for call ID
 //Description: initailization
 //
 $(document).ready(function () {
-	ShowHideOnProcessing(true);//show on processing
+	ShowOf(OnProcessing, true);//show on processing
 	Init();
 	GetUIStrings();//get all the strings for UI in current UI language
 
@@ -35,9 +35,10 @@ $(document).ready(function () {
 	});
 
 	//stop show onprocessing
-	ShowHideOnProcessing(false);
+	ShowOf(OnProcessing,false);
 	//hide upload progress bar
-	$("#UploadProgressbar").hide();
+	//$("#UploadProgressbar").hide();
+	ShowOf(UploadProgressbar, false);
 	//lesten upload file
 	$('#UploadFiles').change(function (e) {
 		UploadFiles(e);
@@ -54,7 +55,8 @@ $(document).ready(function () {
 //Description: get all the strings for UI in current UI language
 //
 function GetUIStrings() {
-	$('#ShowErrorMessage').hide();//首先关闭所显示的Error
+	//$('#ShowErrorMessage').hide();//首先关闭所显示的Error
+	ShowOf(ShowErrorMessage, false);
 	var jsondata = getGetUIStringsParamJsonData();
 	var settings = {
 		"async": false,
@@ -78,7 +80,7 @@ function GetUIStrings() {
 							oUIStringDic = oJsonObj;
 						}
 					} catch (e) {
-						ShowErrorMessage('Data Error!', 'Bad UI strings JSON Data:' + e);
+						ShowErrorMessageFunc('Data Error!', 'Bad UI strings JSON Data:' + e);
 					}
 				}
 				else {
@@ -95,7 +97,7 @@ function GetUIStrings() {
 		},
 		"error": function (jqXHR, textStatus, errorThrown) {//for http error
 			//显示错误信息
-			ShowErrorMessage('Server Error!', textStatus);
+			ShowErrorMessageFunc('Server Error!', textStatus);
 		},
 	};
 
@@ -110,7 +112,8 @@ function GetUIStrings() {
 //Description: show next gif/tiff data
 //
 function ShowNextData() {
-	$('#ShowErrorMessage').hide();//首先关闭所显示的Error
+	//$('#ShowErrorMessage').hide();//首先关闭所显示的Error
+	ShowOf(ShowErrorMessage, false);
 	var nUID = $.guid++;
 	resetImageFiFo.push(nUID);	//记录CallStack
 	var jsondata = getGetNextDataParamJsonData(nUID);
@@ -138,7 +141,7 @@ function ShowNextData() {
 				if ((data.type) && (nStackNo >= 0)) {
 					resetImageFiFo.splice(0, nStackNo + 1);//clear the call ID before this ID.
 					if (resetImageFiFo.length <= 0) {
-						ShowHideOnProcessing(false);
+						ShowOf(OnProcessing,false);
 					}
 					if (data.type.indexOf('Json') >= 0) {
 						var oJsonObj = JSON.parse(data.data);
@@ -168,7 +171,7 @@ function ShowNextData() {
 							strMessage += ',Message:' + data.data;
 						}
 					}
-					ShowErrorMessage('Caution:', strMessage);
+					ShowErrorMessageFunc('Caution:', strMessage);
 					//alert(strMessage);//show a message that means could not get uistrings
 				}
 			}
@@ -194,7 +197,7 @@ function ShowNextData() {
 		},
 		"error": function (jqXHR, textStatus, errorThrown) {//for http error
 			//show error
-			ShowErrorMessage('Server Error!', textStatus);
+			ShowErrorMessageFunc('Server Error!', textStatus);
 		},
 	};
 
@@ -209,14 +212,15 @@ function ShowNextData() {
 //Description: upload selected files
 //
 function UploadFiles(e) {
-	$('#ShowErrorMessage').hide();//首先关闭所显示的Error
+	//$('#ShowErrorMessage').hide();//首先关闭所显示的Error
+	ShowOf(ShowErrorMessage, false);
 	var files = e.currentTarget.files;
 	var data = new FormData();
 	for (var i = 0; i < files.length; i++) {
 		data.append(files[i].name, files[i]);
 	}
 	var settings = {
-		async: false,
+		async: true,
 		crossDomain: true,
 		url: uri + "/Upload",//gifdataController.Upload() will be called
 		method: "POST",
@@ -248,7 +252,8 @@ function UploadFiles(e) {
 		},
 		success: function (data, status, xhr) {//get contents from ResponseParam
 			//hide upload progress
-			$("#UploadProgressbar").hide();
+			//$("#UploadProgressbar").hide();
+			ShowOf(UploadProgressbar, false);
 			//check completed message 
 			var contentType = xhr.getResponseHeader("content-type") || "";
 			if (contentType.indexOf("json") >= 0) {//we need JSON data
@@ -263,14 +268,16 @@ function UploadFiles(e) {
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
 			//hide upload progress
-			$("#UploadProgressbar").hide();
+			//$("#UploadProgressbar").hide();
+			ShowOf(UploadProgressbar, false);
 			//show error
-			ShowErrorMessage('Server Error!', textStatus);
+			ShowErrorMessageFunc('Server Error!', textStatus);
 		},
 	};
 
 	//Show upload progress
-	$("#UploadProgressbar").show();
+	//$("#UploadProgressbar").show();
+	ShowOf(UploadProgressbar, true);
 	$.ajax(settings);
 }
 
@@ -473,9 +480,9 @@ function Init() {
 	biOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 	bMSIE = !!navigator.userAgent.match(/Trident/g) || !!navigator.userAgent.match(/MSIE/g);
 
-	if (biOS) {//for iOS
-		$('#btnSaveAs').css('display', 'none');//do not support save image(hide save button)
-	}
+	//if (biOS) {//for iOS
+	//	$('#btnSaveAs').css('display', 'none');//do not support save image(hide save button)
+	//}
 
 	//set UI language. default is english
 	if (supportLanguages && (supportLanguages.length > 1)) {
@@ -502,19 +509,20 @@ function Init() {
 }
 
 //************************************************************************
-//Name: 	ShowErrorMessage
+//Name: 	ShowErrorMessageFunc
 //Author: 	TEI (2017/12/10)
 //Modify:
 //Return:  	
 //Description: show message (error, warning...)
 //
-function ShowErrorMessage(title, msg) {//标题，和具体内容；其一为空的时候表示要关闭此信息框
+function ShowErrorMessageFunc(title, msg) {//标题，和具体内容；其一为空的时候表示要关闭此信息框
 	var errorMessageBox = $('#ShowErrorMessage');
 	if (errorMessageBox) {
 		if ((title == "") && (msg == "")) {
 			//没有给出显示内容时，认为是关闭显示
 			//errorMessageBox.style.display = "none";
-			errorMessageBox.hide();
+			//errorMessageBox.hide();
+			ShowOf(ShowErrorMessage, false);
 		} else {
 			//errorMessageBox.empty();//清空当前显示内容
 			//从后面去掉两个(default.html中必须有两个element，<h3></h3>和<p></p>)
@@ -528,23 +536,31 @@ function ShowErrorMessage(title, msg) {//标题，和具体内容；其一为空
 			}
 			//errorMessageBox.html('<h3>' + title + '</h3>' + '<p>' + msg + '</p>'); //添加好显示内容
 			//errorMessageBox.style.display = "block";//显示
-			errorMessageBox.show();//显示
+			//errorMessageBox.show();//显示
+			ShowOf(ShowErrorMessage,true);
 		}
 	}
 }
 
 //************************************************************************
-//Name: 	ShowHideOnProcessing
+//Name: 	ShowOf
 //Author: 	TEI (2017/12/10)
 //Modify: 	
 //Return:  	
 //Description: show / hide an onprocessing animation
 //
-function ShowHideOnProcessing(bShow) {	//true:show
-	if (bShow) {
-		$("#OnProcessing").show();
-	} else {
-		$("#OnProcessing").hide();
+function ShowOf(oElement,	//element
+				bShow) {	//true:show
+	//var oOnProcessing = document.getElementById("OnProcessing");
+	//notice: safari do not work with show/hide
+	if (oElement) {
+		if (bShow) {
+			oElement.style.display = "block";
+			//$("#OnProcessing").show();
+		} else {
+			oElement.style.display = "none";
+			//$("#OnProcessing").hide();
+		}
 	}
 }
 
@@ -556,8 +572,10 @@ function ShowHideOnProcessing(bShow) {	//true:show
 //Description: Open control pannle
 //
 function openNav() {
-	document.getElementById("ControlPanel").style.display = "block";//show control pannel
-	document.getElementById("buttonOpenControlPanel").style.display = "none";//hide open control pannle button
+	//document.getElementById("ControlPanel").style.display = "block";//show control pannel
+	ShowOf(ControlPanel, true);
+	//document.getElementById("buttonOpenControlPanel").style.display = "none";//hide open control pannle button
+	ShowOf(buttonOpenControlPanel, false);
 }
 
 //************************************************************************
@@ -568,6 +586,8 @@ function openNav() {
 //Description: Close control pannle
 //
 function closeNav() {
-	document.getElementById("ControlPanel").style.display = "none";//hide contorl pannel
-	document.getElementById("buttonOpenControlPanel").style.display = "block";//show open control pannel button
+	//document.getElementById("ControlPanel").style.display = "none";//hide contorl pannel
+	ShowOf(ControlPanel, false);
+	//document.getElementById("buttonOpenControlPanel").style.display = "block";//show open control pannel button
+	ShowOf(buttonOpenControlPanel, false);
 }
