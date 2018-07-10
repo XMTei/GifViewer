@@ -216,16 +216,17 @@ function UploadFiles(e) {
 		data.append(files[i].name, files[i]);
 	}
 	var settings = {
-		//async: false,
-		//crossDomain: true,
+		async: false,
+		crossDomain: true,
 		url: uri + "/Upload",//gifdataController.Upload() will be called
 		method: "POST",
-		headers: {//Use header to set the content type
-			'content-type': "multipart/form-data"//tell server that it will get form data
-			//'content-type': " undefined"//
-			//"cache-control": "no-cache"
-		},
-		//contentType: false,//use headers.content-type to set the content type
+		//headers: {//Use header to set the content type
+			//'Accept': 'application/json'
+			//'content-type': 'multipart/form-data'
+			//'content-type': " undefined"
+			//'cache-control': 'no-cache'
+		//},
+		contentType: false,//use headers.content-type to set the content type
 		processData: false,
 		cache: false,
 		dataType: 'json',

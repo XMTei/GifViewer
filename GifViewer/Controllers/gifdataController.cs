@@ -331,7 +331,7 @@ namespace GifViewer.Controllers
 		//
 		//[RequestSizeLimit(2147483648)]
 		[HttpPost("Upload")]
-		public async Task<ActionResult> Upload()//want to get the data form ajax, but does not work
+		public async Task<ActionResult> Upload(IFormFile file)//want to get the data form ajax, but does not work
 		{
 			ActionResult oRcd = await Task.Run(() =>
 			{//use async to make return data
@@ -363,7 +363,7 @@ namespace GifViewer.Controllers
 								if (strExt.Equals(".gif", StringComparison.OrdinalIgnoreCase))
 								{
                                     //strMessage += $"here 3 {oFile.Name} is gif file. ";
-									string strFilename = strImgDir + $@"\{oFile.Name}";
+									string strFilename = strImgDir + $@"/{oFile.Name}";
 									if (!System.IO.File.Exists(strFilename))
 									{//start upload
                                         //strMessage += $"here 4 {strFilename} does not exists. ";
