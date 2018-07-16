@@ -589,5 +589,5 @@ function closeNav() {
 	//document.getElementById("ControlPanel").style.display = "none";//hide contorl pannel
 	ShowOf(ControlPanel, false);
 	//document.getElementById("buttonOpenControlPanel").style.display = "block";//show open control pannel button
-	ShowOf(buttonOpenControlPanel, false);
+	ShowOf(buttonOpenControlPanel, true);
 }

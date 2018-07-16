@@ -1,7 +1,13 @@
 ﻿[ //for UI string
 	{ //[0] for English(en).
-		"ControlPanel": { //use ["ControlPanel"] to get this value, "ControlPanel" is an ID of a element
+		"spanControlPanel": { //use ["ControlPanel"] to get this value, "ControlPanel" is an ID of a element
 			"html": "Control Panel" //for innerhtml of this element of this ID
+		},
+		"btnCloseControlPanel": {
+			"title": "Control Panel"
+		},
+		"buttonOpenControlPanel": {
+			"title": "Open Control Panel"
 		},
 		"FileNameFilter": {
 			"title": "Input part of file name want to show", //for the attribute named title in this element of this ID
@@ -23,8 +29,14 @@
 		}
 	},
 	{ //[1] for Chinese(zh),need to consider Simplified or Traditional Chinese
-		"ControlPanel": {
+		"spanControlPanel": {
 			"html": "控制面板"
+		},
+		"btnCloseControlPanel": {
+			"title": "控制面板"
+		},
+		"buttonOpenControlPanel": {
+			"title": "打开控制面板"
 		},
 		"FileNameFilter": {
 			"title": "输入文件名所包含的文字以过滤所需显示的文件", //for the attribute named title in this element of this ID
@@ -46,8 +58,14 @@
 		}
 	},
 	{ //[1] for Chinese(zh),need to consider Simplified or Traditional Chinese
-		"ControlPanel": {
+		"spanControlPanel": {
 			"html": "コントロールパネル"
+		},
+		"btnCloseControlPanel": {
+			"title": "コントロールパネル"
+		},
+		"buttonOpenControlPanel": {
+			"title": "コントロールパネルを開く"
 		},
 		"FileNameFilter": {
 			"title": "ファイル名に含まれる文字を入力し、表示したものを限定します。",

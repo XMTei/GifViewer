@@ -14,11 +14,11 @@
 }
 
 /* for control pannel*/
-.ControlPanel {
+/*.ControlPanel {
 	width: 295px;
 	z-index: 3;
-	background-color: rgba(220,220,220,0.8) !important; /*override w3-*  */
-}
+	background-color: rgba(220,220,220,0.8) !important;
+}*/
 
 /*changed w3-container*/
 .w3-container {

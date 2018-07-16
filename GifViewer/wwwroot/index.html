@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title>A Gif Viewer</title>
+	<meta charset="utf-8" />
+	<title>A Gif Viewer</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="A Gif/Tiff Viewer">
 	<meta name="author" content="TEI">
@@ -16,38 +16,34 @@
 	<link rel="shortcut icon" href="./images/GifView.png">
 	<!-- Android Chromeのお気に入りのIcon -->
 	<link rel="icon" sizes="192x192" href="./images/GifView.png">
-
 	<!-- for Debug -->
-	<link rel="stylesheet" href="./lib/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
-	<link rel="stylesheet" href="./lib/w3/w3.css"> 
+	<!--<link rel="stylesheet" href="./lib/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
+	<link rel="stylesheet" href="./lib/w3/w3.css">
 	<link rel="stylesheet" href="./lib/GifViewer.css">
 	<script src="./lib/jQuery/dist/jquery.js"></script>
-	<script src="./lib/GifViewer.js"></script>
-
+	<script src="./lib/GifViewer.js"></script>-->
 	<!-- for Release -->
-	<!--<link rel="stylesheet" href="./lib/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="./lib/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
 	<link rel="stylesheet" href="./lib/w3/w3.min.css">
 	<link rel="stylesheet" href="./lib/GifViewer.min.css">
 	<script src="./lib/jQuery/dist/jquery.min.js"></script>
-	<script src="./lib/GifViewer.min.js"></script>-->
-
+	<script src="./lib/GifViewer.min.js"></script>
 	<!-- here is for IE8. 以下是试图应对IE8等的，但是经测试基本有用，可能由于所用JQuery以及Bootstrap的版本过高，不能得到和IE11以上相同的界面. -->
 	<!--[if lt IE 9]>
 		<script src="lib/html5shiv/dist/html5shiv.min.js"></script>
 		<script src="lib/respond/dest/respond.min.js"></script>
 	<![endif]-->
-
 </head>
 <body>
 	<!-- a buton for open a control panel. 打开控制面板的按钮 注意此按钮的 z-index不可大于控制面板的z-index -->
-	<button class="w3-button w3-teal w3-large w3-hide-large OpenControlPanelBtn" style="display:block;" onclick="openNav()" id="buttonOpenControlPanel">☰</button>
+	<!--<button class="w3-button w3-teal w3-large w3-hide-large OpenControlPanelBtn" style="display:block;" onclick="openNav()" id="buttonOpenControlPanel">☰</button>-->
 	<!-- a control panel on left side. 一个从侧面滑入的控制面板 -->
-	<div class="w3-sidebar w3-collapse w3-border-right w3-light-grey w3-card-4 w3-animate-left ControlPanel" style="display:none;" id="ControlPanel">
+	<div class="w3-sidebar w3-collapse w3-border-right w3-light-gray w3-card-4 w3-animate-left w3-opacity-min" style="display:none;width:295px;" id="ControlPanel">
 		<!-- control panel bar 控制面板的bar -->
-		<div class="w3-bar w3-dark-grey w3-opacity">
+		<div class="w3-bar w3-dark-gray w3-opacity-off">
 			<!-- close button -->
-			<span id="ControlPanel" class="w3-bar-item needTranslation">Control Panel</span>
-			<button onclick="closeNav()" class="w3-bar-item w3-button w3-right w3-hide-large" title="close Sidebar">&times;</button>
+			<span id="spanControlPanel" class="w3-bar-item w3-left needTranslation">Control Panel</span>
+			<button id="btnCloseControlPanel" class="w3-bar-item w3-button w3-right w3-hide-large w3-black w3-hover-gray needTranslation" title="close Sidebar" onclick="closeNav()">&times;</button>
 		</div>
 		<!--contents of control panel -->
 		<div class="w3-container w3-border">
@@ -102,6 +98,10 @@
 			</table>
 		</div>
 	</div>
+	<!-- an clickable part to open above control panel, must set overflow:hidden for IE and Edge to hide scroll bar -->
+	<div id="buttonOpenControlPanel" class="w3-sidebar w3-display-left w3-border-dark-gray w3-hide-large w3-blue w3-hover-blue-gray w3-opacity-min needTranslation" style="height:10%; width:20px; border-top-right-radius:5px; border-bottom-right-radius:5px; border-right-style:double;border-width:4px; overflow:hidden" title="Open Control Panel" onclick="openNav()">
+		<div class="w3-display-middle w3-border-dark-gray" style="height:100%;width:14px;border-right-style:double;border-width:4px;"></div>
+	</div>
 	<!-- Main page, its margin-left must same as width in .ControlPanel -->
 	<div class="w3-main" style="margin-left:295px">
 		<div class="w3-container">
@@ -128,3 +128,4 @@
 	</div>
 </body>
 </html>
+
