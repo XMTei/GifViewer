@@ -155,6 +155,23 @@ function ShowNextData() {
 							else if (oJsonObj.Type.indexOf('TiffBase64') >= 0) {//TiffBase64, currently do not support this type
 								Imagedata.src = "data: image/tiff;base64," + oJsonObj.Data;
 							}
+
+							//check the image size and then set a nice style so that can show whole image in the container
+							if (Imagedata.height > 0) {//for non zero devide
+								var oImg = $('#Imagedata');
+								//clear styles
+								oImg.css({ 'max-width': '', 'max-height': '', 'width': '', 'height': ''});
+								if ((Imagedata.width / Imagedata.height) > 1) {
+									//width > height
+									oImg.css({
+										'max-width': '100%', 'max-height': '100%', 'height': 'auto' });
+								}
+								else {
+									//width <= height
+									oImg.css({ 'max-height': '100%', 'max-width': '100%','width': 'auto' });
+								}
+							}
+
 							//last file name
 							strCurrentFileName = oJsonObj.FileName;
 							nCurrentFileNo = oJsonObj.Index;
@@ -591,3 +608,17 @@ function closeNav() {
 	//document.getElementById("buttonOpenControlPanel").style.display = "block";//show open control pannel button
 	ShowOf(buttonOpenControlPanel, true);
 }
+
+//************************************************************************
+//Name: 	OnSlideLoad
+//Author: 	TEI (2018/9/3)
+//Modify:
+//Return:  	
+//Description: after load a image src
+//
+//function OnSlideLoad() {
+//	//show the gif image in whole client
+//	var oImg = $("#ImageData")
+//	var imageClass = ((oImg.width / oImg.height) > 1) ? 'WideImage' : 'TallImage';
+//	oImg.addClass(imageClass);
+//}
