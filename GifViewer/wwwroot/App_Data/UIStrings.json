@@ -1,0 +1,89 @@
+﻿[ //for UI string
+	{ //[0] for English(en).
+		"spanControlPanel": { //use ["ControlPanel"] to get this value, "ControlPanel" is an ID of a element
+			"html": "Control Panel" //for innerhtml of this element of this ID
+		},
+		"btnCloseControlPanel": {
+			"title": "Control Panel"
+		},
+		"buttonOpenControlPanel": {
+			"title": "Open Control Panel"
+		},
+		"FileNameFilter": {
+			"title": "Input part of file name want to show", //for the attribute named title in this element of this ID
+			"placeholder": "File name contains"
+		},
+		"TimeInterval": {
+			"title": "Input time interval. The rang is 1000 to 20000",
+			"placeholder": "Time Interval(default 4000mm)"
+		},
+		"UploadFiles": {
+			"title": "Upload GIF file(s)."
+		},
+		"AnimationOnOffSwitch": {
+			"title": "Turn on/off gif animation."
+		},
+		"Constant": { //for None ID strings
+			"NoGifFileOnServer": "No any animation file to be shown",
+			"UnuploadedFiles": "Unuploaded file(s). file is not a gif file or has same file in server.  "
+		}
+	},
+	{ //[1] for Chinese(zh),need to consider Simplified or Traditional Chinese
+		"spanControlPanel": {
+			"html": "控制面板"
+		},
+		"btnCloseControlPanel": {
+			"title": "控制面板"
+		},
+		"buttonOpenControlPanel": {
+			"title": "打开控制面板"
+		},
+		"FileNameFilter": {
+			"title": "输入文件名所包含的文字以过滤所需显示的文件", //for the attribute named title in this element of this ID
+			"placeholder": "所要显示的文件所包含的文字"
+		},
+		"TimeInterval": {
+			"title": "输入显示下一文件所需的时间间隔(毫秒),范围在1000至20000",
+			"placeholder": "显示下一文件所需的时间间隔(通常4000毫秒)"
+		},
+		"UploadFiles": {
+			"title": "上传GIF文件。"
+		},
+		"AnimationOnOffSwitch": {
+			"title": "开/关GIF动画显示"
+		},
+		"Constant": { //for None ID strings
+			"NoGifFileOnServer": "服务器端没有可以显示的GIF文件。",
+			"UnuploadedFiles": "没有上传的文件如下（原因是不是GIF文件或服务器中已存在同名文件）："
+		}
+	},
+	{ //[1] for Chinese(zh),need to consider Simplified or Traditional Chinese
+		"spanControlPanel": {
+			"html": "コントロールパネル"
+		},
+		"btnCloseControlPanel": {
+			"title": "コントロールパネル"
+		},
+		"buttonOpenControlPanel": {
+			"title": "コントロールパネルを開く"
+		},
+		"FileNameFilter": {
+			"title": "ファイル名に含まれる文字を入力し、表示したものを限定します。",
+			"placeholder": "ファイル名に含まれる文字"
+		},
+		"TimeInterval": {
+			"title": "画像表示切替間隔（ミリ秒）を入力します。範囲を1000から20000までです",
+			"placeholder": "画像表示切替間隔（ミリ秒）(通常4000ミリ秒)"
+		},
+		"UploadFiles": {
+			"title": "GIFファイルをアップロードします。"
+		},
+		"AnimationOnOffSwitch": {
+			"title": "GIFアニメーション表示のOn/Off"
+		},
+		"Constant": {
+			"NoGifFileOnServer": "サーバーに表示可能なGIFファイルがありません。",
+			"UnuploadedFiles": "下記ファイルはアップロードしませんでした（GIFファイルではないか、同名のファイルが存在しているためです）："
+		}
+	}
+]

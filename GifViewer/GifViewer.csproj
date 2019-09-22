@@ -219,6 +219,8 @@
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\lib\fontawesome\" />
+    <Folder Include="wwwroot\App_Data\" />
+    <Folder Include="wwwroot\App_Data\ImageData\" />
   </ItemGroup>
 
   <ItemGroup>
