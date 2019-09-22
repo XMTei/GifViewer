@@ -110,7 +110,7 @@ namespace GifViewer.Controllers
 				oRcd = await Task.Run(() =>
 				{//use async to make return data
 					ActionResult oJson = new EmptyResult();
-					string strFontFile = System.IO.Path.Combine(this.m_oEnveroment.WebRootPath, @"App_data/UIStrings.json");
+					string strFontFile = System.IO.Path.Combine(this.m_oEnveroment.WebRootPath, @"App_Data/UIStrings.json");
 					try
 					{
 						using (StreamReader file = System.IO.File.OpenText(strFontFile))
@@ -192,7 +192,7 @@ namespace GifViewer.Controllers
 				{//use async to make return data
 					string strMessage = string.Empty;
 					ActionResult oJson = new EmptyResult();
-                    string strImgDir = System.IO.Path.Combine(this.m_oEnveroment.WebRootPath, @"App_data/ImageData");
+                    string strImgDir = System.IO.Path.Combine(this.m_oEnveroment.WebRootPath, @"App_Data/ImageData");
 					try
 					{
 						if(Directory.Exists(strImgDir))
@@ -337,7 +337,7 @@ namespace GifViewer.Controllers
 			{//use async to make return data
 				ActionResult oJson = new EmptyResult();
 				//file directory to save all the uploaded file
-				string strImgDir = System.IO.Path.Combine(this.m_oEnveroment.WebRootPath, @"App_data/ImageData");
+				string strImgDir = System.IO.Path.Combine(this.m_oEnveroment.WebRootPath, @"App_Data/ImageData");
 				try
 				{
 					if (Directory.Exists(strImgDir))

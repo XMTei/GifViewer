@@ -1,26 +1,38 @@
 [
-  {
-    "outputFileName": "wwwroot/lib/w3/w3.min.css",
-    "inputFiles": [
-      "wwwroot/lib/w3/w3.css"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/lib/GifViewer.min.css",
-    "inputFiles": [
-      "wwwroot/lib/GifViewer.css"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/lib/GifViewer.min.js",
-    "inputFiles": [
-      "wwwroot/lib/GifViewer.js"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/index.min.html",
-    "inputFiles": [
-      "wwwroot/index.html"
-    ]
-  }
+	{
+		"outputFileName": "wwwroot/lib/w3/w3.min.css",
+		"inputFiles": [
+			"wwwroot/lib/w3/w3.css"
+		],
+		"minify": {
+			"enabled": true
+		}
+	},
+	{
+		"outputFileName": "wwwroot/lib/GifViewer.min.css",
+		"inputFiles": [
+			"wwwroot/lib/GifViewer.css"
+		],
+		"minify": {
+			"enabled": true
+		}
+	},
+	{
+		"outputFileName": "wwwroot/lib/GifViewer.min.js",
+		"inputFiles": [
+			"wwwroot/lib/GifViewer.js"
+		],
+		"minify": {
+			"enabled": true
+		}
+	},
+	{
+		"outputFileName": "wwwroot/index.min.html",
+		"inputFiles": [
+			"wwwroot/index.html"
+		],
+		"minify": {
+			"enabled": true
+		}
+	}
 ]

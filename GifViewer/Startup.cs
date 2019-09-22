@@ -18,12 +18,6 @@ namespace GifViewer
     {
 		public Startup(IConfiguration configuration)
 		{
-			//var builder = new ConfigurationBuilder()
-			//	.SetBasePath(env.ContentRootPath)
-			//	.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-			//	.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-			//	.AddEnvironmentVariables();
-
 			Configuration = configuration;
 		}
 
@@ -52,11 +46,26 @@ namespace GifViewer
 			{
 				app.UseDeveloperExceptionPage();
 			}
+			else
+			{
+				app.UseHsts();
+			}
 
-			app.UseDefaultFiles();
-			app.UseStaticFiles();
-
+			app.UseHttpsRedirection();
 			app.UseMvc();
+
+			//指定相应的html
+			DefaultFilesOptions DefaultFile = new DefaultFilesOptions();
+			DefaultFile.DefaultFileNames.Clear();
+#if DEBUG
+			DefaultFile.DefaultFileNames.Add("index.html");
+#else
+			DefaultFile.DefaultFileNames.Add("index.min.html");
+#endif
+			app.UseDefaultFiles(DefaultFile);
+			//无指定时显示wwwroot/default.html or index.html
+			//app.UseDefaultFiles();
+			app.UseStaticFiles();
 		}
 	}
 }
