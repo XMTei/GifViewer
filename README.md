@@ -4,7 +4,9 @@ A single page Web application that show Gif animation images one by one.
 ## Development Enviroment
 - Windows 10 + Visual Studio 2019 community
 - Or MacOS + Visual Studio 2019 community for Mac (If it support Bower then it will be very will ). You have to seteup [libgdiplus] (https://github.com/mono/libgdiplus) for [CoreCompact](https://github.com/CoreCompat/CoreCompat).
-- ASP.Net Core 2.1. (For ASP.Net Core 1.X version ([ASP.Net core 1.1.2 for Windows](https://www.microsoft.com/net/download/windows),or [ASP.Net core 1.1.2 for Mac](https://www.microsoft.com/net/download/macos)) check [here](https://github.com/XMTei/GifViewer/tree/495646ab69d3a66a2229fb040491c10146afb0f7))
+- Support ASP.Net Core 3.x
+- For ASP.Net Core 2.X based source code check [here](https://github.com/XMTei/GifViewer/tree/1c86225374926a6ceffa8b104a2801b52d20e5d8))
+- For ASP.Net Core 1.X based source code check [here](https://github.com/XMTei/GifViewer/tree/495646ab69d3a66a2229fb040491c10146afb0f7))
 - [W3.css](https://www.w3schools.com/w3css/default.asp) for responsiveness
 - Use [CoreCompact](https://github.com/CoreCompat/CoreCompat) for imaging.
 - C#,Javascript
@@ -32,4 +34,4 @@ A single page Web application that show Gif animation images one by one.
 ![ScreenshotiPhone](/GifViewer/wwwroot/images/GifVieweriPhone.gif)
 
 ## Notice
-If use this program on MacOS or Linux, make sure you have to install [libgdiplus] (https://github.com/mono/libgdiplus) for [CoreCompact](https://github.com/CoreCompat/CoreCompat).
+If want to debug this program on MacOS or Linux, make sure you have to install [libgdiplus] (https://github.com/mono/libgdiplus) for [CoreCompact](https://github.com/CoreCompat/CoreCompat).

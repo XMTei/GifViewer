@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;//for get server path
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+//using Newtonsoft.Json;
+//using Newtonsoft.Json.Linq;
 using GifViewer.Models;
 using System.Net.Http.Headers;
 
@@ -28,17 +31,18 @@ namespace GifViewer.Controllers
 	//				All the data types are define in Models/gifdata.cs
 	//			1.support web commands GET,POST,PUT,DELETE, but PUT and DELETE are not uead frequncly.
 	//
-	[Route("api/[controller]")]
+	[Route("api/gifdata")]
+	[ApiController]
 	//[Produces("application/json")]
 	//[Consumes("application/json","application/json-patch+json","multipart/form-data")]
-    public class gifdataController : Controller
+	public class gifdataController : Controller
     {
 		#region Vars
-		private IHostingEnvironment m_oEnveroment;//for get server path
+		private IWebHostEnvironment m_oEnveroment;//for get server path
 		#endregion Vars
 
 		#region Constructors
-		public gifdataController(IHostingEnvironment oEnveroment) //for get server path
+		public gifdataController(IWebHostEnvironment oEnveroment) //for get server path
 		{
 			this.m_oEnveroment = oEnveroment;
 		}
@@ -110,14 +114,22 @@ namespace GifViewer.Controllers
 				oRcd = await Task.Run(() =>
 				{//use async to make return data
 					ActionResult oJson = new EmptyResult();
-					string strFontFile = System.IO.Path.Combine(this.m_oEnveroment.WebRootPath, @"App_Data/UIStrings.json");
+					string strUIStringFileName = System.IO.Path.Combine(this.m_oEnveroment.WebRootPath, @"App_Data/UIStrings.json");
 					try
 					{
-						using (StreamReader file = System.IO.File.OpenText(strFontFile))
-						{
+						//using (FileStream file = System.IO.File.Open(strUIStringFileName, FileMode.Open))
+						//{
+						//using (StreamReader file = System.IO.File.OpenText(strUIStringFileName))
+						//{
 							string strData = string.Empty;
-							JsonSerializer oSerializer = new JsonSerializer();
-							Object[] oUIStrings = (Object[])oSerializer.Deserialize(file, typeof(Object[]));
+							string text = System.IO.File.ReadAllText(strUIStringFileName);
+							var jsonOption = new JsonSerializerOptions
+							{
+								ReadCommentHandling = JsonCommentHandling.Skip
+							};
+							object[] oUIStrings = JsonSerializer.Deserialize(text, typeof(object[]), jsonOption) as object[];
+							//JsonSerializer oSerializer = new JsonSerializer();
+							//Object[] oUIStrings = (Object[])oSerializer.Deserialize(file, typeof(Object[]));
 							if ((oUIStrings != null) && (oUIStrings.Length > 0))
 							{
 								Object oStrings = oUIStrings[0];//for defautl to return Enghlish strings
@@ -126,7 +138,7 @@ namespace GifViewer.Controllers
 								{
 									oStrings = oUIStrings[value.LangguageIndex];//return certain language string
 								}
-								strData = JsonConvert.SerializeObject(oStrings);
+								strData = JsonSerializer.Serialize(oStrings);
 							}
 							ResponseParam oResponseParam = new ResponseParam
 							{//return all the strings for UI
@@ -135,7 +147,7 @@ namespace GifViewer.Controllers
 								CallFiFoGUID = -1
 							};
 							oJson = Json(oResponseParam);
-						}
+						//}
 					}
 					catch (Exception e)
 					{//一般是没有找到ColorGroups.json文件等问题
@@ -263,7 +275,7 @@ namespace GifViewer.Controllers
 									ResponseParam oResponseParam = new ResponseParam
 									{//return all the strings for UI
 										Type = DataType.Json,
-										Data = JsonConvert.SerializeObject(oDataInfo),
+										Data = JsonSerializer.Serialize(oDataInfo),	//use system.text.json instead of Newtonsoft
 										CallFiFoGUID = value.CallFiFoGUID,
 									};
 									oJson = Json(oResponseParam);

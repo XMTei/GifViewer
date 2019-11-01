@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Http;
 
 namespace GifViewer.Models
@@ -87,7 +86,7 @@ namespace GifViewer.Models
 	public class DataInfo
 	{
 		//data type for this.Data
-		[JsonConverter(typeof(StringEnumConverter))]
+		[JsonConverter(typeof(JsonStringEnumConverter))]
 		public DataType Type { get; set; } = DataType.GifBase64;
 		//gif/tiff data (base64)
 		public string Data { get; set; } = string.Empty;
@@ -127,7 +126,7 @@ namespace GifViewer.Models
 		//call sequenc ID, copy from XXXXXXXXParam, when async
 		public int CallFiFoGUID { get; set; } = -1;
 		//data type for this.Data
-		[JsonConverter(typeof(StringEnumConverter))]
+		[JsonConverter(typeof(JsonStringEnumConverter))]
 		public DataType Type { get; set; } = DataType.Non;
 		//data
 		public string Data { get; set; } = string.Empty;
